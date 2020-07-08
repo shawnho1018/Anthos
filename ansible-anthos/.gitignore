@@ -1,0 +1,4 @@
+*.json
+asm/
+istio-1.6.4-asm.9/
+*.key
