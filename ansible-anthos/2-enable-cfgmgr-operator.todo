@@ -1,9 +1,0 @@
-#!/bin/bash
-gcloud services enable anthos.googleapis.com
-kubectl apply -f ./config-management-operator.yaml
-kubectl create secret generic git-creds \
---namespace=config-management-system \
---from-file=ssh=/home/shawnho/.ssh/id_rsa.acm
-# bind serviceaccount:anthos-demo-280104@developer.gserviceaccount.com
-source utility.sh
-gcloud projects add-iam-policy-binding "$PROJECT_ID" --member "serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" --role roles/source.reader
