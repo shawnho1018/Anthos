@@ -38,11 +38,12 @@ function set_meshid {
 ### export environmental variables
 export PROJECT_ID="anthos-demo-280104"
 export PROJECT_NUMBER=$(gcloud projects describe ${PROJECT_ID} --format="value(projectNumber)")
+export PROJECT_DIR=$(pwd)/istio-1.6.4-asm.9
 export CLUSTER1="c1"
 export CLUSTER2="c2"
 export WORKLOAD_POOL="${PROJECT_ID}.svc.id.goog"
 export CLUSTER_LOCATION="asia-east1-a"
-export MESH_ID="proj-${PROJECT_ID}"
+export MESH_ID="proj-${PROJECT_NUMBER}"
 export CTX_C1="gke_${PROJECT_ID}_${CLUSTER_LOCATION}_${CLUSTER1}"
 export CTX_C2="gke_${PROJECT_ID}_${CLUSTER_LOCATION}_${CLUSTER2}"
 
