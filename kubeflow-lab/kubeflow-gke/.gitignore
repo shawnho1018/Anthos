@@ -1,2 +1,2 @@
-./kustomize
-./gcp_config
+kustomize/
+gcp_config/
