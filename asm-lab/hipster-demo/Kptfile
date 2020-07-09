@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+    name: hipster-demo
+upstream:
+    type: git
+    git:
+        commit: fccaff8885e1e7fcdd8571a80a5926a06509704f
+        repo: https://github.com/GoogleCloudPlatform/microservices-demo
+        directory: /release
+        ref: master
