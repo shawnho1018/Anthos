@@ -6,5 +6,6 @@ gcloud compute url-maps delete --quiet td-vm-urlmap
 gcloud compute backend-services delete --quiet td-vm-svc --global 
 gcloud compute firewall-rules delete --quiet fw-allow-hc
 gcloud compute health-checks delete --quiet td-vm-hc
-gcloud compute instance-groups managed delete --quiet backend-td-vm-template
+gcloud compute instance-groups managed delete --quiet backend-td-vm-template --zone asia-east1-a
+gcloud compute instance-groups managed delete --quiet client --zone asia-east1-a
 

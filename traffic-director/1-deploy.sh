@@ -1,3 +1,7 @@
+gcloud compute instance-groups managed create client \
+	--zone asia-east1-a \
+	--size=1 \
+	--template="td-envoy-template"
 gcloud compute instance-groups managed create backend-$1 \
   --zone asia-east1-a \
   --size=2 \
@@ -5,10 +9,10 @@ gcloud compute instance-groups managed create backend-$1 \
 
 gcloud compute health-checks create http td-vm-hc
 
-gcloud compute firewall-rules create fw-allow-hc --action ALLOW --direction INGRESS \
-	--source-ranges 35.191.0.0/16,130.211.0.0/22 \
-	--target-tags http-td-tag,http-server,https-server \
-	--rules tcp
+#gcloud compute firewall-rules create fw-allow-hc --action ALLOW --direction INGRESS \
+#	--source-ranges 35.191.0.0/16,130.211.0.0/22 \
+#	--target-tags http-td-tag,http-server,https-server \
+#	--rules tcp
 gcloud compute backend-services create td-vm-svc --global \
 	--load-balancing-scheme=INTERNAL_SELF_MANAGED \
 	--health-checks td-vm-hc
