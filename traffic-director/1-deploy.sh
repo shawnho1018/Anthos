@@ -22,7 +22,7 @@ gcloud compute backend-services add-backend td-vm-svc --instance-group backend-$
 ## Add routing rules
 gcloud compute url-maps create td-vm-urlmap --default-service td-vm-svc
 gcloud compute url-maps add-path-matcher td-vm-urlmap --default-service td-vm-svc --path-matcher-name td-vm-path-matcher
-gcloud compute url-maps add-host-rule td-vm-urlmap --hosts hello-world.exmple.com \
+gcloud compute url-maps add-host-rule td-vm-urlmap --hosts hello-world.example.com \
 	--path-matcher-name td-vm-path-matcher
 
 # create http proxy
