@@ -1,0 +1,24 @@
+hostconfig:
+  dns: 192.180.1.10
+  tod: 216.239.35.0
+  otherdns:
+  - 8.8.8.8
+  - 8.8.4.4
+  othertod:
+  - ntp.ubuntu.com
+  searchdomainsfordns:
+  - "shawn.lab"
+blocks:
+  - netmask: 255.255.255.0
+    gateway: 192.180.2.254
+    ips:
+    - ip: 192.180.2.61
+      hostname: admin-host1
+    - ip: 192.180.2.62
+      hostname: admin-host2
+    - ip: 192.180.2.63
+      hostname: admin-host3
+    - ip: 192.180.2.64
+      hostname: admin-host4
+    - ip: 192.180.2.65
+      hostname: admin-host5

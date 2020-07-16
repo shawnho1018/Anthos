@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: default
+spec:
+  rules:
+    - http:
+        paths:
+        - backend:
+            serviceName: wordpress-1-wordpress-svc 
+            servicePort: 80
