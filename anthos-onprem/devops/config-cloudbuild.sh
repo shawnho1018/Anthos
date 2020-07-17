@@ -17,5 +17,5 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 --member "serviceAccount:$CBSA" \
 --role roles/gkehub.viewer
-
+# refer to this alpha doc https://docs.google.com/document/d/1JNazhLOZn-La96isNOUpwKaLD6KD5trAfz2OKpqkboQ/edit#
 sed "s/{USER_ACCOUNT}/${CBSA}/g" cluster-impersonate.yaml | kubectl apply -f -
