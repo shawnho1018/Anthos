@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: UserCluster
 # (Required) A unique name for this cluster
-name: "apigee1"
+name: "on-prem1"
 # (Required) GKE on-prem version (example: 1.3.0-gke.16)
-gkeOnPremVersion: 1.4.0-gke.13
+gkeOnPremVersion: "1.4.0-gke.13"
 # # (Optional) vCenter configuration (default: inherit from the admin cluster)
 # vCenter:
 #   resourcePool: ""
@@ -19,7 +19,7 @@ gkeOnPremVersion: 1.4.0-gke.13
 network:
   ipMode:
     # (Required) Define what IP mode to use ("dhcp" or "static")
-    type: static 
+    type: static
     # # (Required when using "static" mode) The absolute or relative path to the yaml file
     # # to use for static IP allocation
     ipBlockFilePath: "user-hostconfig.yaml"
@@ -31,44 +31,27 @@ network:
   podCIDR: 192.169.0.0/16
   vCenter:
     # vSphere network name
-    networkName: "LB-I(192.180.3.0)"
+    networkName: "LB-E(192.180.2.0)"
 # (Required) Load balancer configuration
 loadBalancer:
   # (Required) The VIPs to use for load balancing
-  vips:
+  vips: 
     # Used to connect to the Kubernetes API
-    controlPlaneVIP: "192.180.2.20"
+    controlPlaneVIP: "192.180.2.55"
     # Shared by all services for ingress traffic
-    ingressVIP: "192.180.2.21"
+    ingressVIP: "192.180.2.56"
   # (Required) Which load balancer to use "F5BigIP" "Seesaw" or "ManualLB". Uncomment
   # the corresponding field below to provide the detailed spec
-  kind: ManualLB
-  # # (Required when using "ManualLB" kind) Specify pre-defined nodeports
-  manualLB:
-    ingressHTTPNodePort: 30243
-    ingressHTTPSNodePort: 30879
-    controlPlaneNodePort: 30562
-    addonsNodePort: 0
-  # # (Required when using "F5BigIP" kind) Specify the already-existing partition and
-  # # credentials
-  # f5BigIP:
-  #   address: ""
-  #   credentials:
-  #     username: ""
-  #     password: ""
-  #   partition: ""
-  #   # # (Optional) Specify a pool name if using SNAT
-  #   # snatPoolName: ""
-  # (Required when using "Seesaw" kind) Specify the Seesaw configs
+  kind: Seesaw
   seesaw:
     # (Required) The absolute or relative path to the yaml file to use for IP allocation
     # for LB VMs. Must contain one or two IPs.
-    ipBlockFilePath: ""
+    ipBlockFilePath: "lb-hostconfig.yaml"
     # (Required) The Virtual Router IDentifier of VRRP for the Seesaw group. Must
     # be between 1-255 and unique in a VLAN.
-    vrid: 0
+    vrid: 2
     # (Required) The IP announced by the master of Seesaw group
-    masterIP: ""
+    masterIP: "192.180.2.57"
     # (Required) The number CPUs per machine
     cpus: 4
     # (Required) Memory size in MB per machine
@@ -90,7 +73,7 @@ masterNode:
 # (Required) List of node pools. The total un-tainted replicas across all node pools
 # must be greater than or equal to 3
 nodePools:
-- name: pool-1
+- name: pool-seesaw-1
   # # Labels to apply to Kubernetes Node objects
   # labels: {}
   # # Taints to apply to Kubernetes Node objects
@@ -105,29 +88,7 @@ nodePools:
 # Spread nodes across at least three physical hosts (requires at least three hosts)
 antiAffinityGroups:
   # Set to false to disable DRS rule creation
-  enabled: false 
-# # (Optional): Configure additional authentication
-# authentication:
-#   # (Optional) Configure OIDC authentication
-#   oidc:
-#     issuerURL: ""
-#     kubectlRedirectURL: ""
-#     clientID: ""
-#     clientSecret: ""
-#     username: ""
-#     usernamePrefix: ""
-#     group: ""
-#     groupPrefix: ""
-#     scopes: ""
-#     extraParams: ""
-#     # Set value to string "true" or "false"
-#     deployCloudConsoleProxy: ""
-#     # # The absolute or relative path to the CA file (optional)
-#     # caPath: ""
-#   # (Optional) Provide an additional serving certificate for the API server
-#   sni:
-#     certPath: ""
-#     keyPath: ""
+  enabled: false
 # (Optional) Specify which GCP project to connect your logs and metrics to
 stackdriver:
   projectID: "anthos-demo-280104"
@@ -136,29 +97,19 @@ stackdriver:
   enableVPC: false
   # The absolute or relative path to the key file for a GCP service account used to
   # send logs and metrics from the cluster
-  serviceAccountKeyPath: "$KEYS/whitelisted-key.json"
+  serviceAccountKeyPath: "../../keys/whitelisted-key.json"
 # (Optional) Specify which GCP project to connect your GKE clusters to
 gkeConnect:
   projectID: "anthos-demo-280104"
   # The absolute or relative path to the key file for a GCP service account used to
   # register the cluster
-  registerServiceAccountKeyPath: "$KEYS/connect-key.json"
+  registerServiceAccountKeyPath: "../../keys/whitelisted-key.json"
   # The absolute or relative path to the key file for a GCP service account used by
   # the GKE connect agent
-  agentServiceAccountKeyPath: "$KEYS/whitelisted-key.json"
+  agentServiceAccountKeyPath: "../../keys/connect-key.json"
 # (Optional) Specify Cloud Run configuration
 cloudRun:
-  enabled: true
-# # (Optional/Alpha) Configure the GKE usage metering feature
-# usageMetering:
-#   bigQueryProjectID: ""
-#   # The ID of the BigQuery Dataset in which the usage metering data will be stored
-#   bigQueryDatasetID: ""
-#   # The absolute or relative path to the key file for a GCP service account used by
-#   # gke-usage-metering to report to BigQuery
-#   bigQueryServiceAccountKeyPath: ""
-#   # Whether or not to enable consumption-based metering
-#   enableConsumptionMetering: false
+  enabled: false
 # # (Optional/Alpha) Configure kubernetes apiserver audit logging
 cloudAuditLogging:
   projectid: "anthos-demo-280104"
@@ -166,4 +117,4 @@ cloudAuditLogging:
   clusterlocation: "asia-east1-a"
 #   # The absolute or relative path to the key file for a GCP service account used to
 #   # send audit logs from the cluster
-  serviceaccountkeypath: "$KEYS/whitelisted-key.json"
+  serviceaccountkeypath: "../../keys/whitelisted-key.json"

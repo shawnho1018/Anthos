@@ -14,7 +14,7 @@ vCenter:
   caCertPath: "../acfea4e3.0"
   # The credentials and address to connect to vCenter
   credentials:
-    username: administrator@vsphere.local
+    username: istrator@vsphere.local
     password: zeroneP@ssw0rd01
   # Provide the name for the persistent disk to be used by the deployment (ending
   # in .vmdk). Any directory in the supplied path must be created before deployment
@@ -26,7 +26,7 @@ network:
     type: static
     # # (Required when using "static" mode) The absolute or relative path to the yaml file
     # # to use for static IP allocation
-    ipBlockFilePath: "admin-hostconfig.yaml"
+    ipBlockFilePath: "-hostconfig.yaml"
   # (Required) The Kubernetes service CIDR range for the cluster. Must not overlap
   # with the pod CIDR range
   serviceCIDR: 10.96.232.0/24
@@ -42,7 +42,7 @@ loadBalancer:
   vips:
     # Used to connect to the Kubernetes API
     controlPlaneVIP: "192.180.2.10"
-    # # (Optional) Used for admin cluster addons (needed for multi cluster features). Must
+    # # (Optional) Used for  cluster addons (needed for multi cluster features). Must
     # # be the same across clusters
     addonsVIP: "192.180.2.11"
   # (Required) Which load balancer to use "F5BigIP" "Seesaw" or "ManualLB". Uncomment
@@ -102,7 +102,7 @@ proxy:
 #   caCertPath: ""
 # (Required): The absolute or relative path to the GCP service account key for pulling
 # GKE images
-gcrKeyPath: "../whitelisted-key.json"
+gcrKeyPath: "$KEYS/whitelisted-key.json"
 # (Optional) Specify which GCP project to connect your logs and metrics to
 stackdriver:
   projectID: "anthos-demo-280104"
@@ -111,7 +111,7 @@ stackdriver:
   enableVPC: false
   # The absolute or relative path to the key file for a GCP service account used to
   # send logs and metrics from the cluster
-  serviceAccountKeyPath: "../whitelisted-key.json"
+  serviceAccountKeyPath: "$KEYS/whitelisted-key.json"
 # # (Optional) Configure kubernetes apiserver audit logging
 cloudAuditLogging:
   projectid: "anthos-demo-280104"
@@ -119,4 +119,4 @@ cloudAuditLogging:
   clusterlocation: "asia-east1-a"
 #   # The absolute or relative path to the key file for a GCP service account used to
 #   # send audit logs from the cluster
-  serviceaccountkeypath: "../whitelisted-key.json"
+  serviceaccountkeypath: "$KEYS/whitelisted-key.json"
