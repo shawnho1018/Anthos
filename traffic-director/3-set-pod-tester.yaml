@@ -22,5 +22,5 @@ echo 'Pod -> Pod'
 #kubectl exec -it $BUSYBOX_POD -c busybox -- /bin/sh -c "$TEST_CMD"
 
 echo 'Pod -> VM'
-TEST_CMD="wget -q --header 'Host: hello-world.example.com' -O - 10.0.0.1; echo"
+TEST_CMD="wget -q --header 'Host: service-test' -O - 10.0.0.1; echo"
 kubectl exec -it $BUSYBOX_POD -c busybox -- /bin/sh -c "$TEST_CMD"

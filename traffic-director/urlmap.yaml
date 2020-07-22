@@ -1,0 +1,22 @@
+creationTimestamp: '2020-07-20T09:11:10.005-07:00'
+defaultService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/hello-gke-service
+hostRules:
+- hosts:
+  - service-test
+  pathMatcher: td-path-matcher
+kind: compute#urlMap
+name: hello-backend-service-urlmap
+pathMatchers:
+- defaultService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/hello-backend-service
+  name: td-path-matcher
+  routeRules:
+  - matchRules:
+    - prefixMatch: ''
+    priority: 2
+    routeAction:
+      weightedBackendServices:
+      - backendService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/hello-backend-service
+        weight: 50
+      - backendService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/hello-gke-service
+        weight: 50
+selfLink: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/urlMaps/hello-backend-service-urlmap

@@ -22,17 +22,17 @@ gcloud compute backend-services create $BACKENDNAME\
 gcloud compute backend-services add-backend $BACKENDNAME --instance-group $IGNAME \
 	--instance-group-zone asia-east1-a --global
 
+# Add Default URLMAP+PROXY
+echo '---Add routing rules'
+gcloud compute url-maps create $BACKENDURLMAP --default-service $BACKENDNAME
+
 gcloud compute url-maps add-path-matcher $BACKENDURLMAP \
-   --default-service $BACKENDNAME \
-   --path-matcher-name td-path-matcher
+   --path-matcher-name td-path-matcher \
+   --default-service $BACKENDNAME
 
 gcloud compute url-maps add-host-rule $BACKENDURLMAP \
    --hosts service-test \
    --path-matcher-name td-path-matcher
-
-# Add Default URLMAP+PROXY
-echo '---Add routing rules'
-gcloud compute url-maps create $BACKENDURLMAP --default-service $BACKENDNAME
 
 echo '---Add proxies'
 gcloud compute target-http-proxies create $BACKENDPROXY \
@@ -78,4 +78,4 @@ echo "## Load Hybrid Weight ##"
 echo "########################"
 
 gcloud compute url-maps import hello-backend-service-urlmap \
-  --source=hello-urlmap.yaml
+  --source=urlmap.yaml
