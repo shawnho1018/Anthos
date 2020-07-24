@@ -1,0 +1,15 @@
+creationTimestamp: '2020-07-24T02:39:22.504-07:00'
+defaultService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/next-hello-backend
+hostRules:
+- hosts:
+  - '*'
+  pathMatcher: next-pathmatcher
+- hosts:
+  - next-hello
+  pathMatcher: next-pathmatcher
+kind: compute#urlMap
+name: next-urlmap
+pathMatchers:
+- defaultService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/next-hello-backend
+  name: next-pathmatcher
+selfLink: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/urlMaps/next-urlmap

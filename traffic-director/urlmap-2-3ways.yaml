@@ -1,0 +1,25 @@
+defaultService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/next-hello-backend
+hostRules:
+- hosts:
+  - '*'
+  pathMatcher: next-pathmatcher
+- hosts:
+  - next-hello
+  pathMatcher: next-pathmatcher
+kind: compute#urlMap
+name: next-urlmap
+pathMatchers:
+- defaultService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/next-hello-backend
+  name: next-pathmatcher
+  routeRules:
+  - matchRules:
+    - prefixMatch: ''
+    priority: 2
+    routeAction:
+      weightedBackendServices:
+      - backendService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/service-test-backend
+        weight: 33
+      - backendService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/next-hello-backend
+        weight: 33
+      - backendService: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/backendServices/nginx-svc-backend
+        weight: 34 

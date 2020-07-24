@@ -1,9 +1,0 @@
-IPAddress: 0.0.0.0
-IPProtocol: TCP
-kind: compute#forwardingRule
-loadBalancingScheme: INTERNAL_SELF_MANAGED
-name: fr1
-network: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/networks/td
-networkTier: PREMIUM
-portRange: 80-80
-target: https://www.googleapis.com/compute/v1/projects/anthos-demo-280104/global/targetHttpProxies/hello-backend-service-proxy

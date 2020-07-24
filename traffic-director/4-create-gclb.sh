@@ -1,5 +1,6 @@
 #!/bin/bash
 source env.sh
+kubectx c1
 kubectl apply -f gateway-proxy-svc.yaml
 kubectl apply -f gateway-proxy.yaml
 
@@ -26,8 +27,8 @@ NEG_NAME=$(gcloud beta compute network-endpoint-groups list \
         
 gcloud compute backend-services add-backend $ROUTERBACKEND \
     --global \
-    --network-endpoint-group ${NEG_NAME} \
-    --network-endpoint-group-zone asia-east1-a \
+    --network-endpoint-group "${NEG_NAME}" \
+    --network-endpoint-group-zone $APP1ZONE \
     --balancing-mode RATE \
     --max-rate-per-endpoint 5
 
