@@ -8,9 +8,9 @@ Traffic director is the control plane for Service Mesh in GCP. It highly integra
 ### How this project is configured? 
 This project is used to demonstrate hybrid workloads across multi-regions. 3 different workloads will be deployed across asia-northeast1, asia-east1, and asia-southeast1. Note that a VPC with different subnets are used within this 3 regions. 0-prepare-env.sh is the scrip to lay out the topology.
 
-1-create-apps.sh is to create workloads onto these 3 regions. asia-east1 will have VM deployed and the corresponding template was generated using utilities/prepare-templates.sh. app1 will be deployed as pod in asia-northeast1 while nginx will be deployed as pod in asia-southeast1. Once the deploy is completed, We should be able to see 3 services successfully configured in Traffic Director UI. If not, please run periodic-firewall.sh to open firewalls between health-check and workloads. 
+1. 1-create-apps.sh is to create workloads onto these 3 regions. asia-east1 will have VM deployed and the corresponding template was generated using utilities/prepare-templates.sh. app1 will be deployed as pod in asia-northeast1 while nginx will be deployed as pod in asia-southeast1. Once the deploy is completed, We should be able to see 3 services successfully configured in Traffic Director UI. If not, please run periodic-firewall.sh to open firewalls between health-check and workloads. 
 
-2-config-td.sh is used to configure a basic route to build a connection to workload in asia-east1. After this script is executed, user should be able to execute 3-set-pod-tester.sh to request hello response back. 
+2. 2-config-td.sh is used to configure a basic route to build a connection to workload in asia-east1. After this script is executed, user should be able to execute 3-set-pod-tester.sh to request hello response back. 
 
 3. Try to use 3-export-urlmap.sh to retrieve urlmap setting. Verify the setting with urlmap-2-3ways.yaml to see the difference. If you hope to see 3 way traffic to the 3 multi-regions, run 3-import-urlmap.sh. 
 
