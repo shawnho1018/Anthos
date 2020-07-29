@@ -28,7 +28,7 @@ This task is to register GKE clusters onto Anthos. Also, a K8S service account, 
 #### Lab-Steps
 * Run ./1-config-anthos.sh
 #### Demos
-* The two clusters are visible inside Anthos console, as shown [here](images/after-register.png).
+* The two clusters are visible inside Anthos console, as shown ![here](images/after-register.png).
 ---
 ### Install ACM
 #### Pre-requisite
