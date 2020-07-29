@@ -6,7 +6,6 @@ This project is to demonstrate Anthos GKE Capabilities. The entire lab includes 
 * Install Anthos Service Mesh (ASM)
 * Configure Cloud Build
 * Configure Cloud Run
-
 There are pre-requisites in each task to properly use this lab. This README is organized in the following struct. In each task, 3 sections will be briefed, including pre-requisite, lab-steps, and demos. Please keep in mind this is a self-maintained lab. If you encountered any issue, please file a ticket. 
 ---
 ### Produce GKE and VPC
