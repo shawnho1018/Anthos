@@ -1,0 +1,8 @@
+#!/usr/local/bin/bash
+export repo="app-repo"
+gcloud source repos clone $repo
+gcloud beta builds triggers create cloud-source-repositories \
+--repo=${repo} \
+--branch-pattern="master" \
+--build-config="cloudbuild.yaml"
+

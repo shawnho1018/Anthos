@@ -1,6 +1,0 @@
-#!/bin/bash
-for c in $CLUSTER1 $CLUSTER2
-  do
-    gcloud container hub memberships delete --quiet "gke-$c" 
-    gcloud container clusters delete --quiet $c
-  done

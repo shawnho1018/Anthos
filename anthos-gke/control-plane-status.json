@@ -1,0 +1,340 @@
+{
+  "displayName": "Anthos GKE On-Prem Control Plane Status (preview)",
+  "gridLayout": {
+    "columns": 2,
+    "widgets": [
+      {
+        "title": "Admin Cluster API Server Availability",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/anthos/up\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"kube-apiserver\")",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN",
+                    "groupByFields": [
+                      "resource.label.\"project_id\"",
+                      "resource.label.\"cluster_name\"",
+                      "resource.label.\"location\""
+                    ]
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "thresholds": [
+            {
+              "label": "label",
+              "value": 0.999
+            }
+          ],
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "User Cluster API Server Availability",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/anthos/up\" resource.type=\"k8s_container\" resource.label.\"namespace_name\"!=\"kube-system\" resource.label.\"pod_name\"=monitoring.regex.full_match(\".*kube-apiserver.*\")",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN",
+                    "groupByFields": [
+                      "resource.label.\"project_id\"",
+                      "resource.label.\"location\"",
+                      "resource.label.\"cluster_name\"",
+                      "resource.label.\"namespace_name\"",
+                      "resource.label.\"pod_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {}
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "thresholds": [
+            {
+              "label": "label",
+              "value": 0.999
+            }
+          ],
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "Admin Cluster Scheduler Availability",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/anthos/up\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"kube-scheduler\")",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN",
+                    "groupByFields": [
+                      "resource.label.\"project_id\"",
+                      "resource.label.\"cluster_name\"",
+                      "resource.label.\"location\""
+                    ]
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "thresholds": [
+            {
+              "label": "label",
+              "value": 0.999
+            }
+          ],
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "User Cluster Scheduler Availability",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/anthos/up\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\".*kube-scheduler.*\") resource.label.\"namespace_name\"!=\"kube-system\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN",
+                    "groupByFields": [
+                      "resource.label.\"project_id\"",
+                      "resource.label.\"location\"",
+                      "resource.label.\"cluster_name\"",
+                      "resource.label.\"namespace_name\"",
+                      "resource.label.\"pod_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {}
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "thresholds": [
+            {
+              "label": "label",
+              "value": 0.999
+            }
+          ],
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "Admin Cluster Controller Manager Availability",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/anthos/up\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"kube-controller-manager\")",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN",
+                    "groupByFields": [
+                      "resource.label.\"project_id\"",
+                      "resource.label.\"cluster_name\"",
+                      "resource.label.\"location\""
+                    ]
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "thresholds": [
+            {
+              "label": "label",
+              "value": 0.999
+            }
+          ],
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "User Cluster Controller Manager Availability",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/anthos/up\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\".*kube-controller-manager.*\") resource.label.\"namespace_name\"!=\"kube-system\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN",
+                    "groupByFields": [
+                      "resource.label.\"project_id\"",
+                      "resource.label.\"location\"",
+                      "resource.label.\"cluster_name\"",
+                      "resource.label.\"namespace_name\"",
+                      "resource.label.\"pod_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {}
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "thresholds": [
+            {
+              "label": "label",
+              "value": 0.999
+            }
+          ],
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "Admin Cluster Etcd Availability",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/anthos/up\" resource.type=\"k8s_container\" resource.label.\"container_name\"=monitoring.regex.full_match(\"etcd\")",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN",
+                    "groupByFields": [
+                      "resource.label.\"project_id\"",
+                      "resource.label.\"cluster_name\"",
+                      "resource.label.\"location\""
+                    ]
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "thresholds": [
+            {
+              "label": "label",
+              "value": 0.999
+            }
+          ],
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      },
+      {
+        "title": "User Cluster Etcd Availability",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"kubernetes.io/anthos/up\" resource.type=\"k8s_container\" resource.label.\"pod_name\"=monitoring.regex.full_match(\".*etcd.*\") resource.label.\"namespace_name\"!=\"kube-system\"",
+                  "aggregation": {
+                    "perSeriesAligner": "ALIGN_MEAN",
+                    "crossSeriesReducer": "REDUCE_MEAN",
+                    "groupByFields": [
+                      "resource.label.\"project_id\"",
+                      "resource.label.\"location\"",
+                      "resource.label.\"cluster_name\"",
+                      "resource.label.\"namespace_name\"",
+                      "resource.label.\"pod_name\""
+                    ]
+                  },
+                  "secondaryAggregation": {}
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE",
+              "minAlignmentPeriod": "60s"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "thresholds": [
+            {
+              "label": "label",
+              "value": 0.999
+            }
+          ],
+          "yAxis": {
+            "label": "y1Axis",
+            "scale": "LINEAR"
+          },
+          "chartOptions": {
+            "mode": "COLOR"
+          }
+        }
+      }
+    ]
+  }
+}
