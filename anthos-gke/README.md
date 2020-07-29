@@ -6,7 +6,9 @@ This project is to demonstrate Anthos GKE Capabilities. The entire lab includes 
 * Install Anthos Service Mesh (ASM)
 * Configure Cloud Build
 * Configure Cloud Run
+
 There are pre-requisites in each task to properly use this lab. This README is organized in the following struct. In each task, 3 sections will be briefed, including pre-requisite, lab-steps, and demos. Please keep in mind this is a self-maintained lab. If you encountered any issue, please file a ticket. 
+
 ---
 ### Produce GKE and VPC
 This task is to create a GKE and VPC accordingly. In the sample file, I use default VPC but you could change it.
@@ -20,6 +22,7 @@ This task is to create a GKE and VPC accordingly. In the sample file, I use defa
 #### Demos
 * Users could expect 2 GKE clusters are configured along with VPC/subnets (optional). 
 * Check from gcloud console to see those GKE clusters. Workload identity, Cloudrun, ASM, ip-alias have been configured accordingly. 
+
 ---
 ### Register to Anthos
 This task is to register GKE clusters onto Anthos. Also, a K8S service account, wid-tester, will be created and link to GCP's service account 
@@ -29,6 +32,7 @@ This task is to register GKE clusters onto Anthos. Also, a K8S service account, 
 * Run ./1-config-anthos.sh
 #### Demos
 * The two clusters are visible inside Anthos console, as shown ![here](images/after-register.png).
+
 ---
 ### Install ACM
 #### Pre-requisite
@@ -36,16 +40,19 @@ This task is to register GKE clusters onto Anthos. Also, a K8S service account, 
 * Create a github project for ACM and place public key as the trust key. 
 #### Lab-Steps
 #### Demos
+
 ---
 ### Install ASM
 #### Pre-requisite
 #### Lab-Steps
 #### Demos
+
 ---
 ### Configure Cloud Build
 #### Pre-requisite
 #### Lab-Steps
 #### Demos
+
 ---
 ### Configure Cloud Run
 #### Pre-requisite
