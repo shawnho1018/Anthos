@@ -23,14 +23,11 @@ CLUSTER2SVCCIDR="10.121.0.0/20"
 
 # create vpc
 #echo "Setting VPC..."
-#gcloud compute networks create $VPC --subnet-mode custom --bgp-routing-mode=global
-#gcloud beta compute networks subnets create $SUBNET1 --network $VPC --range "192.168.10.0/24" --region $CLUSTER1REGION
 echo "*** name: $CLUSTER1CIDRNAME = $CLUSTER1PODCIDR *** "
 gcloud compute networks subnets update $SUBNET1 \
     --region ${CLUSTER1REGION} \
     --add-secondary-ranges ${CLUSTER1CIDRNAME}=${CLUSTER1PODCIDR} 
 
-#gcloud beta compute networks subnets create $SUBNET2 --network $VPC --range "192.168.11.0/24" --region $CLUSTER2REGION
 gcloud compute networks subnets update $SUBNET2 \
     --region ${CLUSTER2REGION} \
     --add-secondary-ranges ${CLUSTER2CIDRNAME}=${CLUSTER2PODCIDR} 
