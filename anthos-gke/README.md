@@ -15,7 +15,7 @@ This task is to create a GKE and VPC accordingly. In the sample file, I use defa
 #### Pre-requisite
 * Please make sure you have sufficient privilege for creating GKE clusters as well as VPC/Subnets. In this lab, I assume you're a project owner. 
 * Modify env.sh to reflect your PROJECT_ID and USERACCOUNT. The details of the parameters in env.sh are documented in the file. 
-* Create a service account which has gkehub.admin. Use gcloud command to download its key. Rename the file as anthos-connect-sa.key, and move this key into the key folder, recorded in env.sh"
+* Create a service account which has roles/gkehub.admin and roles/gkehub.connect. Use gcloud command to download its key. Rename the file as anthos-connect-sa.key, and move this key into the key folder, recorded in env.sh"
 
 #### Lab-Steps
 * Run ./0-prepare-env.sh
