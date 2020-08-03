@@ -15,7 +15,7 @@ This task is to create a GKE and VPC accordingly. In the sample file, I use defa
 #### Pre-requisite
 * Please make sure you have sufficient privilege for creating GKE clusters as well as VPC/Subnets. In this lab, I assume you're a project owner. 
 * Modify env.sh to reflect your PROJECT_ID and USERACCOUNT. The details of the parameters in env.sh are documented in the file. 
-* Create a service account which has gkehub.admin. Use gcloud command to download its key. Rename the file as anthos-connect-sa.key, and move this key into the key folder, recorded in env.sh"
+* Create a service account which has roles/gkehub.admin and roles/gkehub.connect. Use gcloud command to download its key. Rename the file as anthos-connect-sa.key, and move this key into the key folder, recorded in env.sh"
 
 #### Lab-Steps
 * Run ./0-prepare-env.sh
@@ -36,14 +36,24 @@ This task is to register GKE clusters onto Anthos. Also, a K8S service account, 
 ---
 ### Install ACM
 #### Pre-requisite
-* Use ssh-keygen to produce a pair of private/public keys. 
+* Use ssh-keygen to produce a pair of private/public keys. Please name your key pair to be id-rsa.sme and id-rsa.sme.key
+* Put private key onto your $KEYS folder.
 * Create a github project for ACM and place public key as the trust key. 
+* git clone this sample projects: https://github.com/GoogleCloudPlatform/bank-of-anthos-scripts. We'll use the contents inside bank-of-anthos-scripts/install/acm/ to be our first version of configs. 
+* gcloud source repos create config-repo
+* gcloud source repos clone config-repo ./
 #### Lab-Steps
+* set $ACM to be ./config-repo
+* Run ./2-config-acm.sh, which will place your private key onto the corresponding clusters as secret. 
+* copy bank-of-anthos-scripts/install/acm content onto ./config-repo
+* commit and push codes into ACM
 #### Demos
-
+1. Create Namespace from file and all registered clusters are applied. 
+[Note] test-tls-workload.sh and test-auditpolicy.sh can only be tested once ASM is installed. 
 ---
 ### Install ASM
 #### Pre-requisite
+
 #### Lab-Steps
 #### Demos
 
