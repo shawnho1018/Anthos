@@ -3,7 +3,7 @@ source env.sh
 gcloud services enable anthos.googleapis.com
 gcloud alpha container hub config-management enable
 echo "Clone acm project..."
-git source repos clone $ACMREPO
+gcloud source repos clone $ACMREPO
 git config --global user.email ${GITUSER}@google.com   
 git config --global user.name ${GITUSER} 
 
