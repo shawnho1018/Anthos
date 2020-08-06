@@ -2,6 +2,7 @@
 GCP Cloudrun service is one of the best serverless platform, which provide developer an easy way to execute their code on a production environment. Recently, Google also opensourced a [Knative project](https://knative.dev/docs/), which is the basis of Cloudrun on Anthos. 
  
 GCP provides 2 type of CloudRun services, managed or GKE based. The managed Cloudrun's service FQDN is always internet-facing, which is against some customers' internal security policy. This project is intended to utilize CloudRun on Anthos to produce a service with private FQDN and utilize GCLB to provide internet facing FQDN. The benefits for using GCLB is there are managed security services (e.g. CloudArmor) which could be applied along with GCLB to provide better protection. 
+![Setup Diagram](./images/architecture.png)
 
 In addition to demonstrate GCLB with Cloudrun on Anthos, we'll also show case how to use pub/sub to trigger CloudRun service. Pub/Sub service is GCP's messaging services to use topic/subscription to trigger desired actions. The entire project is organized in 4 scripts:
 
