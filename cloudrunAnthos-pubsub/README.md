@@ -16,3 +16,5 @@ In addition to demonstrate GCLB with Cloudrun on Anthos, we'll also show case ho
 
 5. 3-config-pubsub.sh: this file will replace HelloWorld service with a pubsub service. It will also setup pub/sub's topic and subscription. Follow the instruction in the script to see the result. 
 ![PubSub Service Log](images/pubsub-result.png). 
+
+6. 99-clean-all.sh: this file will remove all setups in this lab, except for static-ip, ssl-certificate, and two images built in 0-init.sh. These four items requires manually removal. 
