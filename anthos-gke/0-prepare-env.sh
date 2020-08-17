@@ -21,8 +21,7 @@ CLUSTER1SVCCIDR="10.120.0.0/20"
 CLUSTER2PODCIDR="10.60.0.0/14"
 CLUSTER2SVCCIDR="10.121.0.0/20"
 
-# create vpc
-#echo "Setting VPC..."
+  
 echo "*** name: $CLUSTER1CIDRNAME = $CLUSTER1PODCIDR *** "
 gcloud compute networks subnets update $SUBNET1 \
     --region ${CLUSTER1REGION} \
